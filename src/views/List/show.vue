@@ -21,7 +21,7 @@
         <template #renderItem="{ item, index }">
             <a-list-item>
                 <a-card hoverable size="small"  :title="item.title+index">
-                    <template #extra><a href="#">查看</a></template>
+                    <template #extra><router-link :to="{path:'/list/detail',query:{id:1}}">查看</router-link></template>
                     <a-descriptions :column="1" size="small">
                         <a-descriptions-item label="">
                             这是这个仓库的描述内容大概15个字

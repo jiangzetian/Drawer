@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory,createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
         path: 'show',
         name: 'ShowList',
         meta:{
-          title: '查看收纳区',
+          title: '管理收纳区',
           layout:true,
           menuShow:true,
         },
@@ -43,6 +43,16 @@ const routes: Array<RouteRecordRaw> = [
           menuShow:true,
         },
         component: () => import('@/views/List/add.vue'),
+      },
+      {
+        path: 'detail',
+        name: 'DetailList',
+        meta:{
+          title: '查看收纳区',
+          layout:true,
+          menuShow:true,
+        },
+        component: () => import('@/views/List/detail.vue'),
       }
     ]
   },
@@ -69,7 +79,8 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  // history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 });
 

@@ -1,13 +1,12 @@
 <template>
-
+    <h1>详情</h1>
 </template>
 
-<script>
+<script lang="ts">
     export default {
-        name: "detail"
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

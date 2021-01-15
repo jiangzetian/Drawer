@@ -1,12 +1,12 @@
 <template>
     <a-row type="flex" justify="center">
         <a-col :sm="24" :md="10">
-            <a-form :model="form" layout="vertical" :labelCol="{span:4}" :wrapperCol="{span:24}">
+            <a-form :model="form" layout="vertical" :wrapperCol="{span:24}">
                 <a-form-item label="名称：">
-                    <a-input :value="form.name" />
+                    <a-input v-model:value="form.name" />
                 </a-form-item>
                 <a-form-item label="房子：">
-                    <a-select v-model:value="form.name" placeholder="">
+                    <a-select v-model:value="form.house" placeholder="">
                         <a-select-option value="1">
                             房子一
                         </a-select-option>
@@ -16,18 +16,21 @@
                     </a-select>
                 </a-form-item>
                 <a-form-item label="位置：">
-                    <a-input :value="form.name" />
+                    <a-input v-model:value="form.position" />
                 </a-form-item>
                 <a-form-item label="描述：">
-                    <a-input :value="form.name" />
+                    <a-input v-model:value="form.desc" />
                 </a-form-item>
-                <a-form-item label="标签：">
-                    <a-input :value="form.desc" />
+                <a-form-item label="标签：(按下回车键可添加一个标签)">
+                    <a-space class="tags" style="margin-bottom: 10px;">
+                        <a-tag color="blue" v-for="(item,index) in form.tags" :key="index">{{item}}</a-tag>
+                    </a-space>
+                    <a-input v-model:value="tag" @pressEnter="addTag" />
                 </a-form-item>
                 <a-form-item label="物品：">
                     <a-row class="item-row" :gutter="20"  v-for="(item,index) in 4" :key="index">
                         <a-col :span="16">
-                            <a-input :value="form.desc" />
+                            <a-input v-model:value="form.desc" />
                         </a-col>
                         <a-col :span="4">
                             <a-input-number  :value="1" :min="1" :defaultValue="1" />
@@ -68,10 +71,23 @@
         setup(){
             const form = ref({
                 name:'',
+                house:'',
+                position:'',
                 desc:'',
+                tags:[],
+                things:[],
             });
+            const tag = ref('');
+            const addTag = () =>{
+                if(tag.value.trim()){
+                    form.value.tags.push(tag.value)
+                }
+                tag.value = '';
+            }
             return {
-                form
+                form,
+                tag,
+                addTag,
             }
         }
     }

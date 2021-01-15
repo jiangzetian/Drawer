@@ -30,13 +30,15 @@
             //路由选择项
             const selectedKeys = ref([0]);
             //页面刷新保持高亮
-            routeData.forEach((item,index)=>{
-                if (item.name == route.name){
-                    selectedKeys.value = [index];
+            for (let i=0;i<routeData.length;i++){
+                const nowPath = route.path.substring(1).split('/');
+                const tempPath = routeData[i].path.substring(1);
+                if(nowPath.indexOf(tempPath)>=0){
+                    selectedKeys.value = [i];
                 }
-            });
+            }
             //点击导航页面切换
-            function menuClick(e){
+            function menuClick(e: any){
                 selectedKeys.value = e.keyPath;
                 router.push({path:routeData[e.key].path});
             }
