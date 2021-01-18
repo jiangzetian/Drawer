@@ -12,7 +12,7 @@
     setup(){
       const search = ref('');
       return {
-        search
+        search,
       }
     }
   }

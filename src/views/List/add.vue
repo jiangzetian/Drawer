@@ -21,11 +21,8 @@
                 <a-form-item label="描述：">
                     <a-input v-model:value="form.desc" />
                 </a-form-item>
-                <a-form-item label="标签：(按下回车键可添加一个标签)">
-                    <a-space class="tags" style="margin-bottom: 10px;">
-                        <a-tag color="blue" v-for="(item,index) in form.tags" :key="index">{{item}}</a-tag>
-                    </a-space>
-                    <a-input v-model:value="tag" @pressEnter="addTag" />
+                <a-form-item label="标签：">
+                    <DynamicTags :maxLength="3" :inputMaxLenght="6" @change="tagsChange" />
                 </a-form-item>
                 <a-form-item label="物品：">
                     <a-row class="item-row" :gutter="20"  v-for="(item,index) in 4" :key="index">
@@ -60,13 +57,15 @@
 
 </template>
 
-<script>
+<script lang="ts">
     import {ref} from 'vue'
     import {PlusOutlined,MinusOutlined} from '@ant-design/icons-vue';
+    import DynamicTags from '@/components/DynamicTags/index.vue'
     export default {
         components: {
             PlusOutlined,
-            MinusOutlined
+            MinusOutlined,
+            DynamicTags
         },
         setup(){
             const form = ref({
@@ -77,17 +76,12 @@
                 tags:[],
                 things:[],
             });
-            const tag = ref('');
-            const addTag = () =>{
-                if(tag.value.trim()){
-                    form.value.tags.push(tag.value)
-                }
-                tag.value = '';
+            const tagsChange = (e: any)=>{
+                console.log(e)
             }
             return {
                 form,
-                tag,
-                addTag,
+                tagsChange
             }
         }
     }
