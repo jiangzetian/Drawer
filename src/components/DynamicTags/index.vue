@@ -21,10 +21,10 @@
 </template>
 
 <script lang="ts">
-    import {nextTick,ref} from 'vue'
+    import {defineComponent} from 'vue'
     import {PlusOutlined} from '@ant-design/icons-vue';
     import dynamicTags from './js/index';
-    export default {
+    export default defineComponent({
         components:{
             PlusOutlined
         },
@@ -33,7 +33,7 @@
             inputMaxLenght: Number
         },
         emits: ["change"],
-        setup(props: any,context: any){
+        setup(props,context){
             const {
                 inputDom,
                 tags,
@@ -58,7 +58,7 @@
                 handleInputConfirm,
             }
         }
-    }
+    })
 </script>
 
 <style scoped>

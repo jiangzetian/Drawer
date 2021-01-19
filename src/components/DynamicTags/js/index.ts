@@ -1,6 +1,6 @@
-import {nextTick,ref} from 'vue'
+import {ref,nextTick,watch} from 'vue'
 
-function dynamicTags(props: any,context: any) {
+export default function dynamicTags(props: any,context: any) {
     //输入框Dom
     const inputDom: any = ref(null);
     //标签数据
@@ -19,9 +19,8 @@ function dynamicTags(props: any,context: any) {
         tags.value.splice(index, 1);
         if (tags.value.length + 1 > props.maxLength) {
             btnVisible.value = false;
-        } else {
-            btnVisible.value = true;
         }
+        btnVisible.value = true;
     };
     //显示输入框
     const showInput = () => {
@@ -41,15 +40,16 @@ function dynamicTags(props: any,context: any) {
         if (inputValue.value.trim()) {
             tags.value.push(inputValue.value);
         }
-
         if (tags.value.length + 1 > props.maxLength) {
             btnVisible.value = false;
         }
-
         inputVisible.value = false;
         inputValue.value = '';
-        context.emit("change", [...tags.value]);
     };
+
+    watch(tags.value, (newValue, oldValue) => {
+        context.emit("change", [...tags.value]);
+    });
 
     return {
         inputDom,//输入框Dom
@@ -63,5 +63,3 @@ function dynamicTags(props: any,context: any) {
         handleInputConfirm,
     }
 }
-
-export default dynamicTags;

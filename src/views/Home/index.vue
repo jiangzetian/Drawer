@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <section style="width: 50%">
+
+    </section>
   </div>
 </template>
 
