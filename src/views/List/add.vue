@@ -1,4 +1,11 @@
 <template>
+    <!--操作-->
+    <a-row class="listHeader" type="flex" justify="end" align="middle">
+        <a-row class="Btn-row">
+            <a-button type="primary" @click="navToshow">返回列表</a-button>
+        </a-row>
+    </a-row>
+    <!--表单-->
     <a-row type="flex" justify="center">
         <a-col :sm="24" :md="10">
             <a-form :model="form" :rules="rules" ref="formDom" :wrapperCol="{span:24}" layout="vertical" >
@@ -42,6 +49,7 @@
 
 <script lang="ts">
     import {ref} from 'vue'
+    import {useRouter} from 'vue-router'
     import {PlusOutlined,MinusOutlined} from '@ant-design/icons-vue';
     import DynamicTags from '@/components/DynamicTags/index.vue'
     import DynamicInput from '@/components/DynamicInput/index.vue'
@@ -51,8 +59,11 @@
             DynamicInput
         },
         setup(){
+            const router = useRouter();
+
             //输入框Dom
             const formDom: any = ref(null);
+            //表单数据
             const form = ref({
                 name:'',
                 house:'',
@@ -61,6 +72,7 @@
                 tags:[],
                 things:[],
             });
+            //验证数据
             const rules= ref({
                 name: [
                     {required: true,message: '请输入收纳区名称', trigger: 'blur'},
@@ -81,15 +93,21 @@
                 // ],
             })
 
+            //跳转
+            const navToshow = ()=>{
+                router.push({path:'/list/show'})
+            }
+            //标签
             const tagsChange = (e: any)=>{
                 form.value.tags = e;
                 console.log(e)
             }
+            //物品
             const thingsChange = (e: any) =>{
                 form.value.things = e;
                 console.log(e)
             }
-
+            //提交
             const onSubmit = ()=>{
                 formDom.value.validate()
                     .then(() => {
@@ -105,6 +123,7 @@
                 formDom,
                 rules,
                 form,
+                navToshow,
                 tagsChange,
                 thingsChange,
                 onSubmit,
