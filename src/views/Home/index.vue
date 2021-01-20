@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <section style="width: 50%">
-      <DynamicUpload @change="changeUpload"/>
+      <DynamicUpload :fileList="[{uid:1111,url:'https://via.placeholder.com/150?text=1'},{uid:1112,url:'https://via.placeholder.com/150?text=2'}]" @change="changeUpload"/>
     </section>
   </div>
 </template>

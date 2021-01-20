@@ -2,7 +2,7 @@
     <a-space direction="vertical" style="width: 100%" v-if="data.length>0">
         <a-row class="item-row" :gutter="20"  v-for="(item,index) in data" :key="index">
             <a-col :span="16">
-                <a-input :maxLength="10" v-model:value="item.name" @blur="inputBlur(item.name)"/>
+                <a-input :maxLength="10" v-model:value="item.name" @blur="inputBlur(item,index)"/>
             </a-col>
             <a-col :span="4">
                 <a-input-number :min="1" v-model:value="item.count" />

@@ -12,7 +12,7 @@ export default function dynamicTags(props: any,context: any) {
     //当前输入框的值
     const inputValue = ref('');
     //输入框最大长度
-    const itemMaxLenght = ref(props.inputMaxLenght``);
+    const itemMaxLenght = ref(props.inputMaxLenght);
 
     //删除某一个
     const handleClose = (index: number) => {

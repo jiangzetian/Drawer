@@ -1,4 +1,4 @@
-import {ref,watch} from 'vue'
+import {ref,toRefs,watch} from 'vue'
 import { message } from 'ant-design-vue';
 
 export default function dynamicInput(props: any,context: any) {
@@ -11,19 +11,20 @@ export default function dynamicInput(props: any,context: any) {
         });
     };
     //输入框失去焦点
-    const inputBlur = (e: string)=>{
-        if(!e){
+    const inputBlur = (item: any,index: number)=>{
+        if(!item.name){
             message.config({
                 maxCount:1,
             });
             message.error('请输入内容');
+            data.value.splice(index,1);
             return false;
         }
         return true;
     }
     //输入框添加按钮
     const ItemInputAddBtn = (index: number)=>{
-        if(inputBlur(data.value[index].name)){
+        if(inputBlur(data.value[index],index)){
             data.value.push({
                 name:'',
                 count:1,
@@ -36,7 +37,16 @@ export default function dynamicInput(props: any,context: any) {
     };
 
     watch(data.value, (newValue: any, oldValue: any) => {
-        context.emit('change',[...newValue])
+        const res: object[] = [];
+        newValue.forEach((item: any,index: number)=>{
+            if(item.name){
+                res.push({
+                    name:item.name,
+                    count:item.count,
+                })
+            }
+        })
+        context.emit('change',res)
     });
 
     return {

@@ -35,6 +35,9 @@
         components: {
             PlusOutlined,
         },
+        props:{
+            fileList:Array,
+        },
         emits:['change'],
         setup(props,context){
             const  previewVisible = ref(false);
@@ -44,6 +47,9 @@
             const handleCancel = ()=>{
                 previewVisible.value = false;
             }
+
+            lists.value = lists.value.concat(props.fileList);
+
             //打开预览窗口
             const handlePreview = async (file: any)=>{
                 if (!file.url && !file.preview) {
@@ -56,7 +62,14 @@
             const handleChange = ({file,fileList}: any)=>{
                 lists.value = fileList;
                 if(file.status == 'done' || file.status == 'removed'){
-                    context.emit("change", [...lists.value]);
+                    const res: object[] = [];
+                    lists.value.forEach((item: any,index: number)=>{
+                        res.push({
+                            uid:item.uid,
+                            url:item.url || item.response.url,
+                        })
+                    })
+                    context.emit("change", res);
                 }
             }
 
