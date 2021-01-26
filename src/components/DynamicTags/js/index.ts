@@ -4,7 +4,7 @@ export default function dynamicTags(props: any,context: any) {
     //输入框Dom
     const inputDom: any = ref(null);
     //标签数据
-    const tags: any = ref([]);
+    const tags = ref<string[]>([]);
     //按钮显隐
     const btnVisible = ref(true);
     //输入框显隐

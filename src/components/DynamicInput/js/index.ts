@@ -2,7 +2,7 @@ import {ref,toRefs,watch} from 'vue'
 import { message } from 'ant-design-vue';
 
 export default function dynamicInput(props: any,context: any) {
-    const data: any = ref([])
+    const data = ref<object[]>([])
     //添加输入
     const addInput = ()=>{
         data.value.push({
