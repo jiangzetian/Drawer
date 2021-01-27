@@ -8,11 +8,30 @@
     <!--表单-->
     <a-row type="flex" justify="center">
         <a-col :sm="24" :md="10">
+            <a-divider orientation="left">
+                添加收纳区
+            </a-divider>
             <a-form :model="form" :rules="rules" ref="formDom" :wrapperCol="{span:24}" layout="vertical" >
-                <a-form-item label="名称：" name="name">
+                <a-form-item label="绑定收纳用品：">
+                    <a-space direction="vertical" style="width: 100%">
+                        <a-row :span="24">
+                            <a-tag color="success">
+                                <template #icon>
+                                    <exclamation-circle-outlined />
+                                </template>
+                                打开小程序扫码绑定更方便
+                            </a-tag>
+                        </a-row>
+                        <a-row type="flex" align="middle"  :gutter="20">
+                            <a-col :span="18"><a-input placeholder="收纳用品编码"/></a-col>
+                            <a-col :span="6"><a-button shape="round">立即绑定</a-button></a-col>
+                        </a-row>
+                    </a-space>
+                </a-form-item>
+                <a-form-item label="收纳区的名称：" name="name">
                     <a-input v-model:value="form.name" autocomplete="off" />
                 </a-form-item>
-                <a-form-item label="房子：" name="house">
+                <a-form-item label="收纳区所在房子：" name="house">
                     <a-select v-model:value="form.house" placeholder="">
                         <a-select-option value="1">
                             房子一
@@ -22,18 +41,16 @@
                         </a-select-option>
                     </a-select>
                 </a-form-item>
-                <a-form-item label="位置：" name="position">
+                <a-form-item label="收纳区的位置：" name="position">
                     <a-input v-model:value="form.position" autocomplete="off"/>
                 </a-form-item>
-                <a-form-item label="描述：" name="desc">
+                <a-form-item label="收纳区的描述：" name="desc">
                     <a-input v-model:value="form.desc" autocomplete="off"/>
                 </a-form-item>
-                <a-form-item label="标签：" name="tages">
+                <a-form-item label="收纳区的标签：" name="tages">
                     <DynamicTags :maxLength="3" :inputMaxLenght="6" @change="tagsChange" />
                 </a-form-item>
-                <a-form-item label="物品：" name="things">
-                    <DynamicInput @change="thingsChange" />
-                </a-form-item>
+                <DynamicUpload :fileList="[{uid:1111,url:'https://via.placeholder.com/150?text=1'},{uid:1112,url:'https://via.placeholder.com/150?text=2'}]" @change="changeUpload"/>
                 <a-form-item>
                     <a-row type="flex" justify="center" :gutter="20">
                         <a-col :span="6">
@@ -50,13 +67,15 @@
 <script lang="ts">
     import {ref} from 'vue'
     import {useRouter} from 'vue-router'
-    import {PlusOutlined,MinusOutlined} from '@ant-design/icons-vue';
+    import {PlusOutlined,MinusOutlined,ExclamationCircleOutlined} from '@ant-design/icons-vue';
+    import DynamicUpload from '@/components/DynamicUpload/index.vue'
     import DynamicTags from '@/components/DynamicTags/index.vue'
-    import DynamicInput from '@/components/DynamicInput/index.vue'
     export default {
         components: {
+            DynamicUpload,
             DynamicTags,
-            DynamicInput
+            ExclamationCircleOutlined
+            // DynamicInput
         },
         setup(){
             const router = useRouter();

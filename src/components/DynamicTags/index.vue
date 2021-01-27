@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent} from 'vue'
+    import {defineComponent} from 'vue';
     import {PlusOutlined} from '@ant-design/icons-vue';
     import dynamicTags from './js/index';
     export default defineComponent({

@@ -1,7 +1,10 @@
 <template>
     <!--操作-->
-    <a-row class="listHeader" type="flex" justify="space-between" align="middle">
-        <a-row class="select-row">
+    <a-row class="listHeader" type="flex" justify="start" align="middle" :gutter="20" >
+        <a-col class="Btn-row">
+            <a-button type="primary" @click="navToAdd">添加收纳区</a-button>
+        </a-col>
+        <a-col class="select-row">
             <a-dropdown>
                 <template #overlay>
                     <a-menu>
@@ -11,10 +14,7 @@
                 </template>
                 <a-button style="margin-left: 8px"> 房子一 <DownOutlined /> </a-button>
             </a-dropdown>
-        </a-row>
-        <a-row class="Btn-row">
-            <a-button type="primary" @click="navToAdd">添加收纳区</a-button>
-        </a-row>
+        </a-col>
     </a-row>
     <!--列表-->
     <a-list  :grid="{ gutter: 20, xs: 1, sm: 2, md: 3, lg: 4 }"  :data-source="listData">

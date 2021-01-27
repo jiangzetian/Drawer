@@ -53,6 +53,26 @@ const routes: Array<RouteRecordRaw> = [
           menuShow:true,
         },
         component: () => import('@/views/List/detail.vue'),
+      },
+      {
+        path: 'add-things',
+        name: 'AddThings',
+        meta:{
+          title: '添加物品',
+          layout:true,
+          menuShow:true,
+        },
+        component: () => import('@/views/List/addThings.vue'),
+      },
+      {
+        path: 'detail-things',
+        name: 'DetailThings',
+        meta:{
+          title: '查看物品',
+          layout:true,
+          menuShow:true,
+        },
+        component: () => import('@/views/List/detailThings.vue'),
       }
     ]
   },
@@ -75,7 +95,19 @@ const routes: Array<RouteRecordRaw> = [
       menuShow:true,
     },
     component: () => import('@/views/About/index.vue'),
-  }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    meta:{
+      title: '登录',
+      //是否显示在layout布局之内
+      layout:false,
+      //是否显示在导航条
+      menuShow:false,
+    },
+    component: () => import('@/views/Login/index.vue'),
+  },
 ];
 
 const router = createRouter({

@@ -1,10 +1,27 @@
 <template>
   <div class="about">
-    <a-row type="flex" justify="center" align="middle" :gutter="20">
+    <a-row type="flex" justify="center" :gutter="40">
       <a-col :span="12">
         <a-tabs default-active-key="1" tab-position="left">
           <a-tab-pane key="1" tab="个人资料：">
-            Content of Tab 1 ...
+            <a-form  :wrapperCol="{span:20}">
+              <a-form-item label="昵称：">
+                <a-input/>
+              </a-form-item>
+              <a-form-item label="性别：">
+                <a-input/>
+              </a-form-item>
+              <a-form-item label="出生：">
+                <a-input/>
+              </a-form-item>
+              <a-form-item>
+                <a-row type="flex" justify="center" :gutter="20">
+                  <a-col :span="12">
+                    <a-button block type="primary">保存</a-button>
+                  </a-col>
+                </a-row>
+              </a-form-item>
+            </a-form>
           </a-tab-pane>
           <a-tab-pane key="2" tab="账号设置：">
             Content of Tab 2 ...
@@ -15,7 +32,7 @@
         </a-tabs>
       </a-col>
       <a-col :span="4">
-        <p>头像：</p>
+        <p>头像(点击更换)：</p>
         <a-upload
                 name="avatar"
                 list-type="picture-card"
