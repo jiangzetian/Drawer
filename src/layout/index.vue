@@ -1,20 +1,20 @@
 <template>
     <a-layout id="components-layout" class="layout">
         <a-layout-header>
-            <div class="logo">Drawer</div>
+            <div class="logo">Tian</div>
             <menu-template/>
             <section class="search">
                 <a-input-search placeholder="请输入搜索内容"/>
             </section>
         </a-layout-header>
         <a-layout-content style="margin:20px 0 0 0;padding: 0 10px;overflow-y:auto;">
-            <div :style="{ background: '#fff', padding: '20px',minHeight: '300px',}">
+            <div style="background:#fff; padding:20px;min-height: calc(100vh - 130px)">
                 <router-view/>
             </div>
+            <a-layout-footer style="text-align: center;padding: 10px 0;">
+                天小天 ©2021
+            </a-layout-footer>
         </a-layout-content>
-        <a-layout-footer style="text-align: center;padding: 10px 0;">
-            天小天 ©2021
-        </a-layout-footer>
     </a-layout>
 </template>
 <script>

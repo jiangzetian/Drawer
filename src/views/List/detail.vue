@@ -8,11 +8,20 @@
     <a-list  :grid="{ gutter: 20, xs: 1, sm: 2, md: 3, lg: 4 }"  :data-source="listData">
         <template #renderItem="{ item, index }">
             <a-list-item>
-                <a-card hoverable size="small"  :title="item.title+index">
-                    <template #extra><router-link :to="{path:'/list/detail-things',query:{tid:1}}">查看</router-link></template>
+<!--                <template #extra><router-link :to="{path:'/list/detail-things',query:{tid:1}}">查看</router-link></template>-->
+                <a-card hoverable>
+                    <template class="ant-card-actions" #actions>
+                        <span key="out">取出</span>
+                        <span key="into">放入</span>
+                        <span key="updata">修改</span>
+                        <span key="delete">删除</span>
+                    </template>
                     <a-descriptions :column="1" size="small">
-                        <a-descriptions-item label="">
-                            这是这个仓库的描述内容大概15个字
+                        <a-descriptions-item>
+                            {{item.title+index}}
+                        </a-descriptions-item>
+                        <a-descriptions-item>
+                            这是这个物品的描述内容大概15个字
                         </a-descriptions-item>
                         <a-descriptions-item label="编号">
                             1810000000
@@ -38,7 +47,10 @@
 <script lang="ts">
     import {defineComponent,ref} from 'vue'
     import {useRouter} from "vue-router";
+    // import { MinusOutlined,PlusOutlined,DeleteOutlined } from '@ant-design/icons-vue';
     export default defineComponent({
+        components: {
+        },
         setup(){
             //路由
             const router = useRouter();

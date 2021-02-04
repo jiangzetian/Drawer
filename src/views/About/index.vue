@@ -24,10 +24,26 @@
             </a-form>
           </a-tab-pane>
           <a-tab-pane key="2" tab="账号设置：">
-            Content of Tab 2 ...
+            <a-form  :wrapperCol="{span:20}">
+              <a-form-item label="手机：">
+                <a-input/>
+              </a-form-item>
+              <a-form-item label="密码：">
+                <a-input/>
+              </a-form-item>
+              <a-form-item>
+                <a-row type="flex" justify="center" :gutter="20">
+                  <a-col :span="12">
+                    <a-button block type="primary">保存</a-button>
+                  </a-col>
+                </a-row>
+              </a-form-item>
+            </a-form>
           </a-tab-pane>
           <a-tab-pane key="3" tab="其他设置：">
-            Content of Tab 3 ...
+            <a-button>房子设置</a-button>
+            <a-button>标签设置</a-button>
+            <a-button>人员设置</a-button>
           </a-tab-pane>
         </a-tabs>
       </a-col>
