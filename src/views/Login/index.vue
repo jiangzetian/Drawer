@@ -1,7 +1,9 @@
 <template>
     <a-row class="layout" type="flex" justify="center" align="middle">
         <div class="loginCard">
-            <div class="loginImg"></div>
+            <div class="loginImg">
+                <img src="@/assets/img/login.png" alt="">
+            </div>
             <div class="loginInput">
                 <a-tabs class="tabs">
                     <a-tab-pane key="1" tab="验证码登录">
@@ -62,6 +64,12 @@
         .loginImg{
             background: #1890FF;
             width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            img{
+                width: 100%;
+            }
         }
         .loginInput{
             width: 60%;
