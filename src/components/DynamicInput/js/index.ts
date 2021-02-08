@@ -1,4 +1,4 @@
-import {ref,toRefs,watch} from 'vue'
+import {ref,toRaw,watch} from 'vue'
 import { message } from 'ant-design-vue';
 
 export default function dynamicInput(props: any,context: any) {
